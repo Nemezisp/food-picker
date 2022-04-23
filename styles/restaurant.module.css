@@ -1,0 +1,142 @@
+.container {
+    min-height: 100vh;
+    padding: 1rem 1rem;
+    display: grid;
+    grid-gap: 0px;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottomContainer {
+    display: grid;
+    font-size: 16px;
+    font-style: italic;
+    grid-gap: 30px;
+    color: black;
+}
+
+.button {
+    background-color: var(--secondary);
+    color: var(--text-primary);
+    border: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    width: 120px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--secondary-hover);
+}
+
+.opinionHeading {
+    color: var(--text-primary);
+    font-size: 25px;
+    margin-bottom: 15px;
+    align-self: flex-end;
+}
+
+.tipContainer {
+    padding: 20px 20px;
+}
+
+.topContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+    width: 100%;
+}
+
+.homeLink {
+    font-size: 20px;
+    color: var(--text-primary);
+    text-shadow: 1px 1px black;
+}
+
+.loading {
+    width: 100%;
+    height: 100vh;
+    font-size: 40px;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    text-shadow: 1px 1px black;
+}
+
+.infoWithIcon {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1em;
+    display: grid;
+    grid-template-columns: 48px auto;
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 20px;
+    color: black;
+    height: min-content;
+}
+
+.mainImage {
+    width: 100%;
+}
+
+@media(min-width: 480px) {
+    .container {
+      padding: 20px 40px;
+    }
+
+    .bottomContainer {
+        font-size: 18px;
+    }
+}
+  
+@media (min-width: 768px) {
+    .topContainer {
+        grid-template-columns: 480px 240px;
+    }
+
+    .bottomContainer {
+        width: 740px;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    .leftColumn,
+    .rightColumn {
+        display: grid;
+        grid-template-rows: 25px 75px auto;
+    }
+
+    .infoContainer {
+        grid-row-start: 3;
+        grid-row-end: span 1;
+    }
+}
+  
+@media (min-width: 1024px) { 
+    .topContainer {
+        grid-template-columns: 600px 350px;
+    }
+
+    .bottomContainer {
+        width: 970px;
+    }
+
+    .container {
+        padding: 20px 80px;
+    }
+}
+

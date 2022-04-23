@@ -2,8 +2,15 @@ html,
 body {
   padding: 0;
   margin: 0;
+  
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+  font-family: 'PT Sans', sans-serif;
+  background: url("/static/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #222
 }
 
 a {
@@ -13,4 +20,24 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --text-primary: white;
+  --secondary: #F12828;
+  --secondary-hover: #E53E3E;
+}
+
+.glass,
+.glass-no-hover {
+  background: rgba( 255, 255, 255, 0.9 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 13px );
+  -webkit-backdrop-filter: blur( 13px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.glass:hover {
+  background: rgba( 255, 255, 255, 0.4 );
 }
