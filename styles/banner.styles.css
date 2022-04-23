@@ -1,0 +1,139 @@
+.container {
+    width: 100%;
+    display: grid;
+    justify-content: start;
+}
+
+.left_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.big_image_container {
+    display: none;
+    align-self: flex-start;
+}
+
+.small_image_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    font-size: 45px;
+    line-height: 1.2em;
+}
+
+.title_first_part {
+    color: var(--text-primary);
+}
+
+.title_second_part {
+    color: var(--secondary);
+}
+
+.subtitle {
+    color: var(--text-primary);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.error {
+    color: red;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.button {
+    padding: 12px;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    max-width: 300px;
+}
+
+.button:hover {
+    background-color: var(--secondary-hover);
+}
+
+@media (min-width: 480px) {
+    .title {
+        font-size: 45px;
+    }
+
+    .subtitle {
+        font-size: 28px;
+    }
+
+    .container {
+        width: 100%;
+        grid-template-columns: auto 130px;
+    }
+
+    .big_image_container {
+        display: flex;
+        align-self: center;
+    }
+
+    .small_image_container {
+        display: none;
+    }
+
+    .button {
+        padding: 15px;
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 56px;
+    }
+
+    .container {
+        grid-template-columns: 490px 180px;
+        justify-content: center;
+    }
+
+    .subtitle {
+        font-size: 32px;
+    }
+
+    .button {
+        padding: 18px;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .title {
+        display: inline;
+    }
+
+    .button {
+        font-size: 20px;
+    }
+
+    .container {
+        grid-template-columns: 690px 230px;
+    }
+
+    .big_image_container {
+        align-items: flex-end;
+    }
+}

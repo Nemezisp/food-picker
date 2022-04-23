@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import cls from "classnames"
 
-import styles from "../styles/previewCard.module.css"
+import styles from "./previewCard.module.css"
 
 const PreviewCard = (props) => {
     return (

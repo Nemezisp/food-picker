@@ -1,4 +1,4 @@
-import styles from "../styles/Banner.module.css"
+import styles from "./banner.module.css"
 import Image from 'next/image'
 import useLocation from "../hooks/use-location";
 
