@@ -19,7 +19,7 @@ const Banner = (props) => {
 
     const handleViewNearbyButtonClick = () => {
         props.setShouldNearbyRestaurantLoad(true)
-        console.log('handleview')
+        alert('handleviewnearby')
         handleLocation()
     }
 
@@ -29,7 +29,7 @@ const Banner = (props) => {
 
     const handleOpenModal = () => {
         if (shouldModalOpen) {
-            console.log('shouldmodal')
+            alert('shouldmodalopen')
             handleLocation()
         }
         if (latLong && shouldModalOpen) {
