@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import './Modal.module.css'
+import './modal.module.css'
 
 class Modal extends React.Component {
     constructor(props) {
