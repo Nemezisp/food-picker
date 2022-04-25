@@ -1,4 +1,5 @@
-import Document, { Head, Html, Main, NextScript }  from 'next/document'
+import Document, { Head, Html, Main, NextScript }  from 'next/document';
+import Script from 'next/script';
 
 class MyDocument extends Document {
     render() {
@@ -16,9 +17,9 @@ class MyDocument extends Document {
                 <NextScript/>
                 <div id="modal-root"></div>
             </body>
-            <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+            <Script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
             integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-            crossOrigin=""></script>
+            crossOrigin=""></Script>
         </Html>
     }
 }
