@@ -26,7 +26,9 @@ const Banner = (props) => {
 
     useEffect(() => {
         const handleOpenModal = () => {
-            handleLocation()
+            if (shouldModalOpen) {
+                handleLocation()
+            }
             if (latLong && shouldModalOpen) {
                 setisModalOpen(true)
                 setShouldModalOpen(false)
