@@ -12,6 +12,8 @@ const Banner = (props) => {
     const {state} = useContext(StoreContext);
     const {latLong} = state;
 
+    let isMounted = useRef(false)
+
     const [isModalOpen, setisModalOpen] = useState(false)
     const [shouldModalOpen, setShouldModalOpen] = useState(false)
 
@@ -24,18 +26,22 @@ const Banner = (props) => {
         setShouldModalOpen(true)
     }
 
-    useEffect(() => {
-        const handleOpenModal = () => {
-            if (shouldModalOpen) {
-                handleLocation()
-            }
-            if (latLong && shouldModalOpen) {
-                setisModalOpen(true)
-                setShouldModalOpen(false)
-            }
+    const handleOpenModal = () => {
+        if (shouldModalOpen) {
+            handleLocation()
         }
-        
-        handleOpenModal();
+        if (latLong && shouldModalOpen) {
+            setisModalOpen(true)
+            setShouldModalOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        if (isMounted.current) {
+            handleOpenModal();
+        } else {
+            isMounted.current = true
+        }
       }, [shouldModalOpen])
 
     return (
