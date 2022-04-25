@@ -26,6 +26,7 @@ const useLocation = () => {
     }
 
     const handleLocation = () => {
+        console.log('test')
         setIsFindingLocation(true)
         if(!navigator.geolocation) {
             setErrorMessage('Geolocation is not supported by your browser');
