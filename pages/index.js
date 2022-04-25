@@ -8,7 +8,6 @@ import Banner from '../components/banner.component'
 
 import { Fragment, useEffect, useState, useContext, useRef } from 'react'
 import { ACTION_TYPES, StoreContext } from "../context/store-context";
-import useLocation from '../hooks/use-location'
 
 const fetchPhotosForRestaurants = async (restaurants) => {
   let restaurantPhotoUrls = [];
@@ -36,10 +35,6 @@ export async function getStaticProps(context) {
 export default function Home(props) {
   const {dispatch, state} = useContext(StoreContext);
   const {latLong, nearbyRestaurants, nearbyRestaurantPhotoUrls} = state;
-
-  const {handleLocation} = useLocation();
-
-  let isMounted = useRef(false)
 
   const [areNearbyRestaurantsLoading, setNearbyRestaurantsLoading] = useState(false);
   const [shouldNearbyRestaurantsLoad, setShouldNearbyRestaurantsLoad] = useState(false)

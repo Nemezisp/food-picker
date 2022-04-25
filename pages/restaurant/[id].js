@@ -2,8 +2,11 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
 import useSWR from 'swr'
+
+const Map = dynamic(() => import('../../components/map.component'), {ssr:false}); 
 
 import { fetchFoursquareRestaurants, fetchPlaceDetails, fetchPlacePhoto, fetchPlaceTips } from '../../utils/foursquare'
 
@@ -28,7 +31,8 @@ export async function getStaticProps({params}) {
             category: restaurant.categories[0].name,
             address: restaurant.location.address || "No address",
             mainPhotoUrl,
-            placeTips: tipArray
+            placeTips: tipArray,
+            latLong: [restaurant.geocodes.main.latitude, restaurant.geocodes.main.longitude]
         }
     }
 }
@@ -52,7 +56,7 @@ export async function getStaticPaths() {
 const Restaurant = (props) => {
     const router = useRouter()
 
-    const {name, address, category, mainPhotoUrl, placeTips } = props
+    const {name, address, category, mainPhotoUrl, placeTips, latLong} = props
 
     let id = router.query.id
 
@@ -146,17 +150,20 @@ const Restaurant = (props) => {
                     <div className={cls("glass-no-hover", styles.infoContainer)}>
                         <div className={styles.infoWithIcon}>
                             <Image src="/static/address-icon.png" height="48" width="48" alt='address-icon'/>
-                            <p>{address}</p>
+                            <span>{address}</span>
                         </div>
                         <div className={styles.infoWithIcon}>
                             <Image src="/static/category-icon.png" height="48" width="48" alt='category-icon'/>
-                            <p>{category}</p>
+                            <span>{category}</span>
                         </div>
                         <div className={styles.infoWithIcon}>
                             <Image src="/static/star-icon.png" height="48" width="48" alt='star-icon'/>
-                            <p>{voteCount}</p>
+                            <span>{voteCount}</span>
                         </div>
                         <button className={styles.button} onClick={() => clickVoteButton()}>Add a vote!</button>
+                    </div>
+                    <div className={styles.mapContainer}>
+                        <Map latlong={latLong} restaurantName={name}/>
                     </div>
                 </div>
             </div>
