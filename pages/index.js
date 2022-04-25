@@ -39,10 +39,11 @@ export default function Home(props) {
   let isMounted = useRef(false)
 
   const [areNearbyRestaurantsLoading, setNearbyRestaurantsLoading] = useState(false);
+  const [shouldNearbyRestaurantLoad, setShouldNearbyRestaurantLoad] = useState(false)
 
   useEffect(() => {
     async function fetchNearbyRestaurants() {
-      if(latLong) {
+      if(latLong && shouldNearbyRestaurantLoad && nearbyRestaurants.length === 0) {
         setNearbyRestaurantsLoading(true);
         try {
           const fetchedRestaurants = await fetchFoursquareRestaurants(latLong, "9", "2000")
@@ -68,8 +69,8 @@ export default function Home(props) {
     } else {
       isMounted.current = true
     }
-
-  }, [latLong, dispatch])
+    setShouldNearbyRestaurantLoad(false)
+  }, [latLong, dispatch, shouldNearbyRestaurantLoad])
 
   return (
     <div className={styles.container}>
@@ -80,7 +81,7 @@ export default function Home(props) {
       </Head>
 
       <div className={styles.main}>
-        <Banner areNearbyRestaurantsLoading={areNearbyRestaurantsLoading}/>
+        <Banner areNearbyRestaurantsLoading={areNearbyRestaurantsLoading} setShouldNearbyRestaurantLoad={setShouldNearbyRestaurantLoad}/>
         {(nearbyRestaurants.length > 0 && nearbyRestaurantPhotoUrls.length > 0) &&
           <Fragment>
             <h2 className={styles.heading2}>Restaurants near you</h2>

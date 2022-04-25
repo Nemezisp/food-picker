@@ -1,20 +1,44 @@
 import styles from "./banner.module.css"
 import Image from 'next/image'
+import { StoreContext } from "../context/store-context";
 import useLocation from "../hooks/use-location";
+import PickRestaurant from "./pickRestaurant.component";
+import Modal from "./modal.component";
+import { useState, useRef, useEffect, useContext } from "react";
 
 const Banner = (props) => {
     const {handleLocation, errorMessage, isFindingLocation} = useLocation();
 
+    const {state} = useContext(StoreContext);
+    const {latLong} = state;
+
+    const [isModalOpen, setisModalOpen] = useState(false)
+    const [shouldModalOpen, setShouldModalOpen] = useState(false)
+
     const handleViewNearbyButtonClick = () => {
+        props.setShouldNearbyRestaurantLoad(true)
         handleLocation()
     }
 
     const handleLetUsPickButtonClick = () => {
-        alert('Feature coming soon')
+        setShouldModalOpen(true)
     }
+
+    useEffect(() => {
+        const handleOpenModal = () => {
+            handleLocation()
+            if (latLong && shouldModalOpen) {
+                setisModalOpen(true)
+                setShouldModalOpen(false)
+            }
+        }
+        
+        handleOpenModal();
+      }, [shouldModalOpen])
 
     return (
         <div className={styles.container}>
+            {isModalOpen && <Modal><PickRestaurant setIsModalOpen={setisModalOpen}/></Modal>}
             <div className={styles.left_container}> 
                 <h1 className={styles.title}>
                     <span className={styles.title_first_part}>Restaurant Picker</span>
@@ -32,8 +56,12 @@ const Banner = (props) => {
                         ? <button className={styles.button} onClick={() => handleViewNearbyButtonClick()}>Loading restaurants...</button>
                         : 
                         <button className={styles.button} onClick={() => handleViewNearbyButtonClick()}>View nearby places</button>
+                    } 
+                    {isFindingLocation ? 
+                        <button className={styles.button} onClick={() => handleLetUsPickButtonClick()}>Locating...</button>
+                        :
+                        <button className={styles.button} onClick={() => handleLetUsPickButtonClick()}>Or let us pick for you!</button>
                     }
-                    <button className={styles.button} onClick={() => handleLetUsPickButtonClick()}>Or let us pick for you!</button>
                 </div>
             </div>
             <div className={styles.big_image_container}>
