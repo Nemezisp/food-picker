@@ -48,7 +48,7 @@ const PickRestaurant = (props) => {
                             <button className={styles.optionButton} onClick={() => handleRadiusButtonClick('6000')}> A short drive (Less than 6km)</button>
                             <button className={styles.optionButton} onClick={() => handleRadiusButtonClick('9000')}> A longer drive (Less than 9km) </button>
                             <div className={styles.lastOption}>
-                                <button className={styles.optionButton} onClick={() => handleRadiusButtonClick('15000')}> Doesn't matter! </button>
+                                <button className={styles.optionButton} onClick={() => handleRadiusButtonClick('15000')}> Doesn&apos;t matter! </button>
                             </div>
                         </div>
                     </div>
