@@ -43,6 +43,7 @@ export default function Home(props) {
 
   useEffect(() => {
     async function fetchNearbyRestaurants() {
+      console.log('here', latLong, shouldNearbyRestaurantLoad)
       if(latLong && shouldNearbyRestaurantLoad && nearbyRestaurants.length === 0) {
         setNearbyRestaurantsLoading(true);
         try {
@@ -62,6 +63,7 @@ export default function Home(props) {
           alert(err.message)
         }
         setNearbyRestaurantsLoading(false);
+        setShouldNearbyRestaurantLoad(false)
       }
     }
     if (isMounted.current) {
@@ -69,8 +71,7 @@ export default function Home(props) {
     } else {
       isMounted.current = true
     }
-    setShouldNearbyRestaurantLoad(false)
-  }, [latLong, dispatch, shouldNearbyRestaurantLoad])
+  }, [dispatch, latLong])
 
   return (
     <div className={styles.container}>
