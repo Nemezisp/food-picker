@@ -16,25 +16,29 @@ const Banner = (props) => {
     const [shouldModalOpen, setShouldModalOpen] = useState(false)
 
     const handleViewNearbyButtonClick = () => {
-        props.setShouldNearbyRestaurantLoad(true)
-        handleLocation()
+        if (!latLong) {
+            props.setShouldNearbyRestaurantsLoad(true)
+            handleLocation()
+        } else {
+            props.fetchNearbyRestaurants()
+        }
     }
 
     const handleLetUsPickButtonClick = () => {
-        handleLocation()
-        setShouldModalOpen(true)
-    }
-
-    const handleOpenModal = () => {
-        if (latLong && shouldModalOpen) {
+        if(!latLong) {
+            setShouldModalOpen(true)
+            handleLocation()
+        } else {
             setisModalOpen(true)
-            setShouldModalOpen(false)
         }
     }
 
     useEffect(() => {
-        handleOpenModal();
-      }, [shouldModalOpen])
+        if (shouldModalOpen) {
+            setisModalOpen(true)
+            setShouldModalOpen(false)
+        }
+    }, [latLong])
 
     return (
         <div className={styles.container}>

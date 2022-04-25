@@ -8,6 +8,7 @@ import Banner from '../components/banner.component'
 
 import { Fragment, useEffect, useState, useContext, useRef } from 'react'
 import { ACTION_TYPES, StoreContext } from "../context/store-context";
+import useLocation from '../hooks/use-location'
 
 const fetchPhotosForRestaurants = async (restaurants) => {
   let restaurantPhotoUrls = [];
@@ -36,41 +37,42 @@ export default function Home(props) {
   const {dispatch, state} = useContext(StoreContext);
   const {latLong, nearbyRestaurants, nearbyRestaurantPhotoUrls} = state;
 
+  const {handleLocation} = useLocation();
+
   let isMounted = useRef(false)
 
   const [areNearbyRestaurantsLoading, setNearbyRestaurantsLoading] = useState(false);
-  const [shouldNearbyRestaurantLoad, setShouldNearbyRestaurantLoad] = useState(false)
+  const [shouldNearbyRestaurantsLoad, setShouldNearbyRestaurantsLoad] = useState(false)
+
+  async function fetchNearbyRestaurants() {
+    if(latLong && nearbyRestaurants.length === 0) {
+      setNearbyRestaurantsLoading(true);
+      try {
+        const fetchedRestaurants = await fetchFoursquareRestaurants(latLong, "9", "2000")
+        const restaurantPhotoUrls = await fetchPhotosForRestaurants(fetchedRestaurants);
+
+        dispatch({
+          type: ACTION_TYPES.SET_NEARBY_RESTAURANTS,
+          payload: fetchedRestaurants.results
+        })
+
+        dispatch({
+          type: ACTION_TYPES.SET_NEARBY_RESTAURANT_PHOTO_URLS,
+          payload: restaurantPhotoUrls
+        })
+      } catch (err) {
+        alert(err.message)
+      }
+      setNearbyRestaurantsLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function fetchNearbyRestaurants() {
-      if(latLong && shouldNearbyRestaurantLoad && nearbyRestaurants.length === 0) {
-        setNearbyRestaurantsLoading(true);
-        try {
-          const fetchedRestaurants = await fetchFoursquareRestaurants(latLong, "9", "2000")
-          const restaurantPhotoUrls = await fetchPhotosForRestaurants(fetchedRestaurants);
-
-          dispatch({
-            type: ACTION_TYPES.SET_NEARBY_RESTAURANTS,
-            payload: fetchedRestaurants.results
-          })
-
-          dispatch({
-            type: ACTION_TYPES.SET_NEARBY_RESTAURANT_PHOTO_URLS,
-            payload: restaurantPhotoUrls
-          })
-        } catch (err) {
-          alert(err.message)
-        }
-        setNearbyRestaurantsLoading(false);
-        setShouldNearbyRestaurantLoad(false);
-      }
-    }
-    if (isMounted.current) {
+    if (shouldNearbyRestaurantsLoad) {
       fetchNearbyRestaurants();
-    } else {
-      isMounted.current = true
-    }
-  }, [dispatch, latLong])
+      setShouldNearbyRestaurantsLoad(false);
+    } 
+  }, [latLong])
 
   return (
     <div className={styles.container}>
@@ -81,7 +83,7 @@ export default function Home(props) {
       </Head>
 
       <div className={styles.main}>
-        <Banner areNearbyRestaurantsLoading={areNearbyRestaurantsLoading} setShouldNearbyRestaurantLoad={setShouldNearbyRestaurantLoad}/>
+        <Banner areNearbyRestaurantsLoading={areNearbyRestaurantsLoading} setShouldNearbyRestaurantsLoad={setShouldNearbyRestaurantsLoad} fetchNearbyRestaurants={fetchNearbyRestaurants}/>
         {(nearbyRestaurants.length > 0 && nearbyRestaurantPhotoUrls.length > 0) &&
           <Fragment>
             <h2 className={styles.heading2}>Restaurants near you</h2>
