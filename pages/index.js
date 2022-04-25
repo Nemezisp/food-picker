@@ -43,7 +43,6 @@ export default function Home(props) {
 
   useEffect(() => {
     async function fetchNearbyRestaurants() {
-      console.log('here', latLong, shouldNearbyRestaurantLoad)
       if(latLong && shouldNearbyRestaurantLoad && nearbyRestaurants.length === 0) {
         setNearbyRestaurantsLoading(true);
         try {
@@ -63,7 +62,7 @@ export default function Home(props) {
           alert(err.message)
         }
         setNearbyRestaurantsLoading(false);
-        setShouldNearbyRestaurantLoad(false)
+        setShouldNearbyRestaurantLoad(false);
       }
     }
     if (isMounted.current) {

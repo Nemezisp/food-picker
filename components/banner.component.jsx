@@ -4,15 +4,13 @@ import { StoreContext } from "../context/store-context";
 import useLocation from "../hooks/use-location";
 import PickRestaurant from "./pickRestaurant.component";
 import Modal from "./modal.component";
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 const Banner = (props) => {
     const {handleLocation, errorMessage, isFindingLocation} = useLocation();
 
     const {state} = useContext(StoreContext);
     const {latLong} = state;
-
-    let isMounted = useRef(false)
 
     const [isModalOpen, setisModalOpen] = useState(false)
     const [shouldModalOpen, setShouldModalOpen] = useState(false)
@@ -23,13 +21,11 @@ const Banner = (props) => {
     }
 
     const handleLetUsPickButtonClick = () => {
+        handleLocation()
         setShouldModalOpen(true)
     }
 
     const handleOpenModal = () => {
-        if (shouldModalOpen) {
-            handleLocation()
-        }
         if (latLong && shouldModalOpen) {
             setisModalOpen(true)
             setShouldModalOpen(false)
@@ -37,11 +33,7 @@ const Banner = (props) => {
     }
 
     useEffect(() => {
-        if (isMounted.current) {
-            handleOpenModal();
-        } else {
-            isMounted.current = true
-        }
+        handleOpenModal();
       }, [shouldModalOpen])
 
     return (
