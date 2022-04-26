@@ -21,7 +21,7 @@ const fetchPhotosForRestaurants = async (restaurants) => {
 }
 
 export async function getStaticProps(context) {
-  const restaurants = await fetchFoursquareRestaurants("52.22289492086966,21.00456171040857", "9", "5000");
+  const restaurants = await fetchFoursquareRestaurants("52.23631515025,20.98001539258103", "9", "2000");
   const restaurantPhotoUrls = await fetchPhotosForRestaurants(restaurants);
 
   return {

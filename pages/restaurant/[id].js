@@ -39,7 +39,7 @@ export async function getStaticProps({params}) {
 }
 
 export async function getStaticPaths() {
-    const restaurants = await fetchFoursquareRestaurants("52.22289492086966,21.00456171040857", "9", "5000")
+    const restaurants = await fetchFoursquareRestaurants("52.23631515025,20.98001539258103", "9", "2000")
 
     const paths = restaurants.results.map(restaurant => {
         return {
