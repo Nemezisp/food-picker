@@ -3,7 +3,7 @@ import { restaurantsTable } from "../../utils/airtable"
 const createRestaurant = async (req, res) => {
     if (req.method === "POST") {
         try {
-            const {id, name, address, category, tip1, tip2, tip3, photoUrl, votes} = req.body
+            const {id, name, address, category, tip1, tip2, tip3, photoUrl, votes, rating} = req.body
 
             if (id) {
                 const findRestaurantRecord = await restaurantsTable.select({filterByFormula: `id="${id}"`}).firstPage()
@@ -22,7 +22,8 @@ const createRestaurant = async (req, res) => {
                                   Tip2: tip2,
                                   Tip3: tip3,
                                   PhotoUrl: photoUrl,
-                                  Votes: votes
+                                  Votes: votes,
+                                  Rating: rating,
                               }
                             },
                         ])

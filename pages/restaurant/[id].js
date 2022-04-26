@@ -9,6 +9,7 @@ import useSWR from 'swr'
 const Map = dynamic(() => import('../../components/map.component'), {ssr:false}); 
 
 import { fetchFoursquareRestaurants, fetchPlaceDetails, fetchPlacePhoto, fetchPlaceTips } from '../../utils/foursquare'
+import { createCookie, getCookie, updateCookie } from '../../utils/cookies'
 
 import cls from 'classnames'
 
@@ -55,10 +56,18 @@ export async function getStaticPaths() {
 
 const Restaurant = (props) => {
     const router = useRouter()
+    let id = router.query.id
 
     const {name, address, category, mainPhotoUrl, placeTips, latLong} = props
 
-    let id = router.query.id
+    const [voteCount, setVoteCount] = useState(0)
+    const [rating, setRating] = useState(0)
+    const [userRating, setUserRating] = useState(null)
+    const [votedMessage, setVotedMessage] = useState(null)
+
+    const fetcher = (url) => fetch(url).then((res) => res.json());
+
+    const {data, error} = useSWR(`/api/getRestaurantById?id=${id}`, fetcher)
 
     const handleCreateRestaurantRecord = async () => {
         const data = {
@@ -70,7 +79,8 @@ const Restaurant = (props) => {
             'tip1': placeTips[0] || "No tip",
             'tip2': placeTips[1] || "No tip",
             'tip3': placeTips[2] || "No tip",
-            'votes': 0
+            'votes': 0,
+            'rating': 0,
         }
         
         try {
@@ -96,37 +106,60 @@ const Restaurant = (props) => {
         }
     }, [id, name])
 
-    const [voteCount, setVoteCount] = useState(0)
-
-    const fetcher = (url) => fetch(url).then((res) => res.json());
-
-    const {data, error} = useSWR(`/api/getRestaurantById?id=${id}`, fetcher)
 
     useEffect(() => {
         if (data && data.Id) {
             setVoteCount(data.Votes)
+            setRating(data.Rating)
         }
     }, [data])
     
     const clickVoteButton = async () => {
-        try {
-            const response = await fetch((`/api/voteRestaurantById?id=${id}`),
-                {
-                    method: 'PUT',
+        if (userRating) {
+
+            if (getCookie('vote')) {
+                if (getCookie('vote').includes(id)) {
+                    setVotedMessage('You already voted on this restaurant!')
+                    console.log('here')
+                    return
+                } else {
+                    updateCookie('vote', id)
                 }
-            )
-            const restaurant = await response.json()
-            if (restaurant && restaurant.Id) {
-                const votes = voteCount + 1;
-                setVoteCount(votes)
+            } else {
+                createCookie('vote', id)
             }
-        } catch(err) {
-            console.log(err)
+
+            try {
+                const response = await fetch((`/api/voteRestaurantById?id=${id}`),
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify({'rating': userRating})
+                    }
+                )
+                const restaurant = await response.json()
+                if (restaurant && restaurant.Id) {
+                    const newRating = (rating*voteCount+userRating)/(voteCount+1)
+                    setRating(newRating)
+                    const votes = voteCount + 1;
+                    setVoteCount(votes)
+                    setVotedMessage('Thank you for voting!')
+                }
+            } catch(err) {
+                console.log(err)
+            }  
         }
     }
 
+    const handleRatingInput = (event) => {
+        setUserRating(parseFloat(event.target.value))
+        document.getElementById('rating').style.setProperty('--value', event.target.value)
+    }
+
     if (error) {
-        return <div className={styles.error}>Something went wrong when retrieving cofee store page</div>
+        return <div className={styles.loading}>Something went wrong when retrieving cofee store page</div>
     }
 
     if (router.isFallback) {
@@ -158,9 +191,23 @@ const Restaurant = (props) => {
                         </div>
                         <div className={styles.infoWithIcon}>
                             <Image src="/static/star-icon.png" height="48" width="48" alt='star-icon'/>
-                            <span>{voteCount}</span>
+                            <span>{rating.toFixed(1)} ({voteCount})</span>
                         </div>
-                        <button className={styles.button} onClick={() => clickVoteButton()}>Add a vote!</button>
+                        {votedMessage 
+                            ? <span className={styles.votedMessage}>{votedMessage}</span>
+                            :                    
+                            <div className={styles.ratingContainer}>
+                                <input
+                                    className={styles.rating}
+                                    id='rating'
+                                    max="5"
+                                    onInput={(event) => handleRatingInput(event)}
+                                    step="0.5"
+                                    type="range"
+                                    value="1"/>
+                            <button type='button' className={styles.button} onClick={() => clickVoteButton()}>Rate!</button>
+                            </div>
+                        }           
                     </div>
                     <div className={styles.mapContainer}>
                         <Map latlong={latLong} restaurantName={name}/>
