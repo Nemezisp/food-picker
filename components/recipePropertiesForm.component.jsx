@@ -101,9 +101,9 @@ const RecipePropertiesForm = () => {
             <div className={styles.innerContainer}>
                 <h3 className={styles.smallHeading}>Cuisine Type:</h3>
                 <div className={styles.checkpointBoxContainer}>
-                    {possibleCuisineTypes.map((type) => {
+                    {possibleCuisineTypes.map((type, index) => {
                         return (
-                            <div className={styles.checkboxInput}>
+                            <div key={index} className={styles.checkboxInput}>
                                 <input className={styles.checkbox} type="checkbox" value={type} onClick={handleCuisineTypeChange}/>
                                 <label className={styles.label}>{type}</label>
                             </div>
@@ -112,9 +112,9 @@ const RecipePropertiesForm = () => {
                 </div>
                 <h3 className={styles.smallHeading}>Diet:</h3>
                 <div className={styles.checkpointBoxContainer}>
-                    {possibleDiets.map((diet) => {
+                    {possibleDiets.map((diet, index) => {
                         return (
-                            <div className={styles.checkboxInput}>
+                            <div key={index} className={styles.checkboxInput}>
                                 <input className={styles.checkbox} type="checkbox" value={diet} onClick={handleDietChange}/>
                                 <label className={styles.label}>{diet}</label>
                             </div>
@@ -123,9 +123,9 @@ const RecipePropertiesForm = () => {
                 </div>
                 <h3 className={styles.smallHeading}>Meal Type:</h3>
                 <div className={styles.checkpointBoxContainer}>
-                    {possibleMealTypes.map((type) => {
+                    {possibleMealTypes.map((type, index) => {
                         return (
-                            <div className={styles.checkboxInput}>
+                            <div key={index} className={styles.checkboxInput}>
                                 <input className={styles.checkbox} type="checkbox" value={type} onClick={handleMealTypeChange}/>
                                 <label className={styles.label}>{type}</label>
                             </div>
@@ -134,9 +134,9 @@ const RecipePropertiesForm = () => {
                 </div>
                 <h3 className={styles.smallHeading}>Dish Type:</h3>
                 <div className={styles.checkpointBoxContainer}>
-                    {possibleDishTypes.map((type) => {
+                    {possibleDishTypes.map((type, index) => {
                         return (
-                            <div className={styles.checkboxInput}>
+                            <div key={index} className={styles.checkboxInput}>
                                 <input className={styles.checkbox} type="checkbox" value={type} onClick={handleDishTypeChange}/>
                                 <label className={styles.label}>{type}</label>
                             </div>
@@ -153,8 +153,8 @@ const RecipePropertiesForm = () => {
                 <Fragment>
                     <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>
                     <div className={styles.cardsContainer}>
-                        {recipes.map((recipe) => {
-                            return (<div className={styles.recipePreview}> 
+                        {recipes.map((recipe, index) => {
+                            return (<div key={index} className={styles.recipePreview}> 
                                         <PreviewCard type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
                                     </div>)
                         })}
