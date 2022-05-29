@@ -153,9 +153,7 @@ const RecipePropertiesForm = () => {
                     <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>
                     <div className={styles.cardsContainer}>
                         {recipes.map((recipe, index) => {
-                            return (<div key={index} className={styles.recipePreview}> 
-                                        <PreviewCard smaller={true} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
-                                    </div>)
+                            return <PreviewCard key={index} smaller={true} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
                         })}
                     </div>
                 </Fragment>              

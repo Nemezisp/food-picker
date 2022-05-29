@@ -71,7 +71,7 @@ const PickRestaurant = (props) => {
                     <div className={styles.stepContainer}>
                         <h2 className={styles.heading}>Ideal restaurant for you:</h2>
                         <div className={styles.resultCard}>
-                            <PreviewCard key={chosenRestaurant.fsq_id} name={chosenRestaurant.name} category={chosenRestaurant.categories[0].name} imgUrl={chosenRestaurant.imageUrl} href={`/restaurant/${chosenRestaurant.fsq_id}`}/>
+                            <PreviewCard type={"restaurant"} smaller={true} key={chosenRestaurant.fsq_id} name={chosenRestaurant.name} category={chosenRestaurant.categories[0].name} imgUrl={chosenRestaurant.imageUrl} href={`/restaurant/${chosenRestaurant.fsq_id}`}/>
                         </div>
                     </div>
                 }

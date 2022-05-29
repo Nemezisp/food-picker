@@ -41,8 +41,10 @@ const getRandomNumbersFromRange = (min, max, amount) => {
 }
 
 export const getRandomRecipes = async (amount) => {
-    let url = buildUrl('chicken');
+    let url = buildUrl(String.fromCharCode(97+Math.floor(Math.random() * 26)));
+    console.log(url)
     let data = await fetchRecipes(url);
+    console.log(data)
     let randomNumbers = getRandomNumbersFromRange(0, data.hits.length, amount)
     let recipes = [];
     for (let number of randomNumbers) {
