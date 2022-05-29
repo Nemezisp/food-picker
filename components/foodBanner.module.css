@@ -10,6 +10,18 @@
     align-items: flex-start;
 }
 
+.edamamContainer {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.edamamContainer > div > a > img {
+    width: 140px;
+    height: 28px;
+    margin-top: 7px;
+}
+
 .big_image_container {
     display: none;
     align-self: flex-start;
@@ -34,7 +46,7 @@
 }
 
 .title_second_part {
-    color: var(--secondary);
+    color: var(--secondary-recipe);
 }
 
 .subtitle {
@@ -49,26 +61,20 @@
     grid-gap: 20px;
 }
 
-.error {
-    color: red;
-    font-weight: 500;
-    font-size: 18px;
-}
-
 .button {
     padding: 12px;
-    background-color: var(--secondary);
+    background-color: var(--secondary-recipe);
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
-    max-width: 300px;
+    width: 140px;
 }
 
 .button:hover {
-    background-color: var(--secondary-hover);
+    background-color: var(--secondary-recipe-hover);
 }
 
 @media (min-width: 480px) {
@@ -97,6 +103,12 @@
     .button {
         padding: 15px;
         font-size: 18px;
+        width: 180px;
+    }
+
+    .edamamContainer > div > a > img {
+        width: 180px;
+        height: 36px;
     }
 }
 
@@ -116,7 +128,9 @@
 
     .button {
         padding: 18px;
+        width: 230px;
     }
+
 }
 
 
@@ -127,6 +141,7 @@
 
     .button {
         font-size: 20px;
+        width: 250px;
     }
 
     .container {

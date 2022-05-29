@@ -75,7 +75,7 @@ const PickRestaurant = (props) => {
                         </div>
                     </div>
                 }
-            <div className={styles.modalClose} onClick={() => props.setIsModalOpen(false)}>&times;</div>
+                <div className={styles.modalClose} onClick={() => props.setIsModalOpen(false)}>&times;</div>
             </div>
         </div>
     )

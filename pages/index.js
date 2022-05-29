@@ -6,7 +6,7 @@ import { fetchFoursquareRestaurants, fetchPlacePhoto } from '../utils/foursquare
 
 import Banner from '../components/banner.component'
 
-import { Fragment, useEffect, useState, useContext, useRef } from 'react'
+import { Fragment, useEffect, useState, useContext } from 'react'
 import { ACTION_TYPES, StoreContext } from "../context/store-context";
 
 const fetchPhotosForRestaurants = async (restaurants) => {
@@ -70,7 +70,7 @@ export default function Home(props) {
   }, [latLong])
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Restaurant Picker</title>
         <meta name="description" content="Let us pick a restaurant for you!" />
@@ -84,7 +84,7 @@ export default function Home(props) {
             <h2 className={styles.heading2}>Restaurants near you</h2>
             <div className={styles.cardsContainer}>
               {nearbyRestaurants.map((restaurant, index) => {
-                  return <PreviewCard key={restaurant.fsq_id} name={restaurant.name} category={restaurant.categories[0].name} imgUrl={nearbyRestaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
+                  return <PreviewCard key={restaurant.fsq_id} type="restaurant" name={restaurant.name} category={restaurant.categories[0].name} imgUrl={nearbyRestaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
               })}
             </div>
           </Fragment>
@@ -92,7 +92,7 @@ export default function Home(props) {
         <h2 className={styles.heading2}>Warsaw Restaurants</h2>
         <div className={styles.cardsContainer}>
           {props.restaurants.map((restaurant, index) => {
-              return <PreviewCard key={restaurant.fsq_id} name={restaurant.name} category={restaurant.categories[0].name} imgUrl={props.restaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
+              return <PreviewCard key={restaurant.fsq_id} type="restaurant" name={restaurant.name} category={restaurant.categories[0].name} imgUrl={props.restaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
           })}
         </div>
       </div>
