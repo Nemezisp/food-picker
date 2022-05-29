@@ -7,9 +7,10 @@ import styles from "./previewCard.module.css"
 const PreviewCard = (props) => {
 
     let imageWidth = props.type === "restaurant" ? "100" : "60"
+    let containerClass = props.smaller === true ? "smallerContainer container" : "container"
 
     return (
-        <div className={cls("glass", styles.container)}>
+        <div className={cls("glass", styles[containerClass])}>
             <Link href={props.href}>
                 <a className={styles.cardLink}>
                     <div className={styles.imageContainer}>

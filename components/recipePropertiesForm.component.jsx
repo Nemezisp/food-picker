@@ -97,7 +97,6 @@ const RecipePropertiesForm = () => {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.bigHeading}>Or let us find an ideal recipe for you:</h2>
             <div className={styles.innerContainer}>
                 <h3 className={styles.smallHeading}>Cuisine Type:</h3>
                 <div className={styles.checkpointBoxContainer}>
@@ -155,7 +154,7 @@ const RecipePropertiesForm = () => {
                     <div className={styles.cardsContainer}>
                         {recipes.map((recipe, index) => {
                             return (<div key={index} className={styles.recipePreview}> 
-                                        <PreviewCard type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
+                                        <PreviewCard smaller={true} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
                                     </div>)
                         })}
                     </div>

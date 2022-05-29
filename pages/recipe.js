@@ -18,7 +18,6 @@ const Recipe = () => {
         setGettingRecipes(true);
         try {
             const fetchedRecipes = await getRandomRecipes(4)
-            console.log(fetchRandomRecipes)
             dispatch({
                 type: ACTION_TYPES.SET_RANDOM_RECIPES,
                 payload: fetchedRecipes
@@ -48,11 +47,12 @@ const Recipe = () => {
                     <h2 className={styles.heading2}>Random recipes:</h2>
                     <div className={styles.cardsContainer}>
                     {randomRecipes.map((recipe, index) => {
-                        return <PreviewCard key={index} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
+                        return <PreviewCard smaller={false} key={index} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
                     })}
                     </div>
                 </Fragment>
             }
+            <h2 className={styles.heading2}>Or let us find an ideal recipe for you:</h2>
             <RecipePropertiesForm/>
         </div>
       </div>

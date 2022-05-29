@@ -84,7 +84,7 @@ export default function Home(props) {
             <h2 className={styles.heading2}>Restaurants near you</h2>
             <div className={styles.cardsContainer}>
               {nearbyRestaurants.map((restaurant, index) => {
-                  return <PreviewCard key={restaurant.fsq_id} type="restaurant" name={restaurant.name} category={restaurant.categories[0].name} imgUrl={nearbyRestaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
+                  return <PreviewCard smaller={false} key={restaurant.fsq_id} type="restaurant" name={restaurant.name} category={restaurant.categories[0].name} imgUrl={nearbyRestaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
               })}
             </div>
           </Fragment>
@@ -92,7 +92,7 @@ export default function Home(props) {
         <h2 className={styles.heading2}>Warsaw Restaurants</h2>
         <div className={styles.cardsContainer}>
           {props.restaurants.map((restaurant, index) => {
-              return <PreviewCard key={restaurant.fsq_id} type="restaurant" name={restaurant.name} category={restaurant.categories[0].name} imgUrl={props.restaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
+              return <PreviewCard smaller={false} key={restaurant.fsq_id} type="restaurant" name={restaurant.name} category={restaurant.categories[0].name} imgUrl={props.restaurantPhotoUrls[index]} href={`/restaurant/${restaurant.fsq_id}`}/>
           })}
         </div>
       </div>
