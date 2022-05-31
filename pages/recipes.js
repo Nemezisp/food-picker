@@ -43,7 +43,8 @@ const Recipes = () => {
         <div className={styles.main}>
             <Banner buttonAction={fetchRandomRecipes} 
                     buttonLoading={gettingRecipes}
-                    type="recipe"/>
+                    type="recipe"
+                    subHeading="Don&apos;t know what to cook?"/>
 
             {(randomRecipes.length > 0) &&
                 <Fragment>

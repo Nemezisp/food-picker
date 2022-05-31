@@ -18,7 +18,7 @@ const Banner = (props) => {
                 <div className={styles.small_image_container}>
                     <Image src={`/static/banner-${typeSingular}-main.png`} alt={typeSingular} height={80} width={80}/>
                 </div>
-                <p className={styles.subtitle}>Don&apos;t know what to drink?</p>
+                <p className={styles.subtitle}>{props.subHeading}</p>
                 <div className={styles.buttons}>
                     <button className={cls(styles.button, styles[backgroundClass])} onClick={() => props.buttonAction()}>
                         {props.buttonLoading ? "Loading..." : `Get random ${typePlural}`}

@@ -41,7 +41,8 @@ const Cocktail = () => {
         <div className={styles.main}>
             <Banner buttonAction={fetchRandomCocktails} 
                     buttonLoading={gettingCocktails}
-                    type="cocktail"/>
+                    type="cocktail"
+                    subHeading="Don&apos;t know what to drink?"/>
             
             {(randomCocktails.length > 0) &&
                 <Fragment>
