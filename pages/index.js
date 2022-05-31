@@ -22,15 +22,15 @@ export default function Home() {
         </div>
         <div className={styles.innerContainer}>
           <span className={styles.subHeading}>Don&apos;t know where to eat?</span>
-          <Link passHref="false" href="/restaurants">
+          <Link passHref={false} href="/restaurants">
             <button className={styles.restaurantButton}>Restaurant Picker</button>
           </Link>
           <span className={styles.subHeading}>Don&apos;t know what to cook?</span>
-          <Link passHref="false" href="/recipes">
+          <Link passHref={false} href="/recipes">
             <button className={styles.recipeButton}>Recipe Picker</button>
           </Link>
           <span className={styles.subHeading}>Don&apos;t know what to drink?</span>
-          <Link passHref="false" href="/cocktails">
+          <Link passHref={false} href="/cocktails">
             <button className={styles.cocktailButton}>Cocktail Picker</button>
           </Link>
         </div>
