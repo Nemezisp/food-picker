@@ -1,6 +1,6 @@
 import styles from '../styles/Cocktails.module.css'
 import Head from 'next/head'
-import CocktailBanner from '../components/cocktailBanner.component'
+import Banner from '../components/banner.component'
 import PreviewCard from '../components/previewCard.component'
 import CocktailForm from '../components/cocktailForm.component'
 import { useContext, useState, Fragment } from 'react'
@@ -39,7 +39,9 @@ const Cocktail = () => {
   
         <Navigation site="cocktails"/>
         <div className={styles.main}>
-            <CocktailBanner buttonAction={fetchRandomCocktails} buttonLoading={gettingCocktails}/>
+            <Banner buttonAction={fetchRandomCocktails} 
+                    buttonLoading={gettingCocktails}
+                    type="cocktail"/>
             
             {(randomCocktails.length > 0) &&
                 <Fragment>

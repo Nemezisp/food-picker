@@ -1,8 +1,7 @@
 import styles from '../styles/Recipes.module.css'
 import Head from 'next/head'
-import RecipesBanner from '../components/recipesBanner.component'
+import Banner from '../components/banner.component'
 import PreviewCard from '../components/previewCard.component'
-import Script from 'next/script'
 import RecipePropertiesForm from '../components/recipePropertiesForm.component'
 import Navigation from '../components/navigation.component'
 import { useContext, useState, Fragment } from 'react'
@@ -42,7 +41,9 @@ const Recipes = () => {
   
         <Navigation site="recipes"/>
         <div className={styles.main}>
-            <RecipesBanner buttonAction={fetchRandomRecipes} buttonLoading={gettingRecipes}/>
+            <Banner buttonAction={fetchRandomRecipes} 
+                    buttonLoading={gettingRecipes}
+                    type="recipe"/>
 
             {(randomRecipes.length > 0) &&
                 <Fragment>

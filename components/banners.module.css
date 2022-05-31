@@ -44,6 +44,7 @@
 
 .title_first_part {
     color: var(--text-primary);
+    text-transform: capitalize;
 }
 
 .color_recipes {
