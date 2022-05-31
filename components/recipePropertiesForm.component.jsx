@@ -1,7 +1,8 @@
 import styles from "./recipePropertiesForm.module.css"
-import { useState, Fragment } from "react"
+import { useState, Fragment, useContext } from "react"
 import {getRecipes} from '../utils/edamam'
 import PreviewCard from "./previewCard.component"
+import { ACTION_TYPES, StoreContext } from "../context/store-context"
 
 const defaultRecipeProperties = {
     cuisineType: [],
@@ -17,9 +18,10 @@ const possibleDiets = ["Balanced", "High-fiber", "High-protein", "Low-carb", "Lo
 const possibleDishTypes = ["Biscuits and Cookies", "Bread", "Condiments and Sauces", "Desserts", "Drinks", "Main course", "Salad", "Sandwiches", "Side dish", "Soup", "Starter", "Sweets", "Any"]
 
 const RecipePropertiesForm = () => {
+    const {dispatch, state} = useContext(StoreContext);
+    const {foundRecipes} = state;
 
     const [chosenRecipeProperties, setChosenRecipeProperties] = useState(defaultRecipeProperties)
-    const [recipes, setRecipes] = useState([])
     const [noRecipesFound, setNoRecipesFound] = useState(false)
     const [searchingForRecipes, setSearchingForRecipes] = useState(false)
     const [error, setError] = useState(false)
@@ -31,10 +33,17 @@ const RecipePropertiesForm = () => {
             let recipes = await getRecipes(chosenRecipeProperties, 8)
             if (recipes.length === 0) {
                 setNoRecipesFound(true)
+                dispatch({
+                    type: ACTION_TYPES.SET_FOUND_RECIPES,
+                    payload: []
+                })
                 setRecipes([])
             } else {
                 setNoRecipesFound(false)
-                setRecipes(recipes)
+                dispatch({
+                    type: ACTION_TYPES.SET_FOUND_RECIPES,
+                    payload: recipes
+                })
             }
         } catch (err) {
             setError(err)
@@ -155,11 +164,11 @@ const RecipePropertiesForm = () => {
                 </div>
                 {noRecipesFound && <span style={{"fontSize": "20px"}}>No recipes matching your search criteria found!</span>}
                 {error && <span style={{"fontSize": "20px"}}>Problem interacting with API.</span>}
-                {recipes.length ?
+                {foundRecipes && foundRecipes.length ?
                 <Fragment>
                     <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>
                     <div className={styles.cardsContainer}>
-                        {recipes.map((recipe, index) => {
+                        {foundRecipes.map((recipe, index) => {
                             return <PreviewCard key={index} smaller={true} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
                         })}
                     </div>

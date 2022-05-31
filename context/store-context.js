@@ -9,6 +9,7 @@ export const ACTION_TYPES = {
   SET_RANDOM_RECIPES: 'SET_RANDOM_RECIPES',
   SET_RANDOM_COCKTAILS: 'SET_RANDOM_COCKTAILS',
   SET_FOUND_COCKTAILS: 'SET_FOUND_COCKTAILS',
+  SET_FOUND_RECIPES: 'SET_FOUND_RECIPES'
 }
 
 const storeReducer = (state, action) => {
@@ -31,6 +32,9 @@ const storeReducer = (state, action) => {
     case ACTION_TYPES.SET_FOUND_COCKTAILS: {
       return {...state, foundCocktails: action.payload}
     }
+    case ACTION_TYPES.SET_FOUND_RECIPES: {
+      return {...state, foundRecipes: action.payload}
+    }
     default: {
       return state
     }
@@ -43,6 +47,7 @@ const StoreProvider = ({children}) => {
     nearbyRestaurants: [],
     nearbyRestaurantPhotoUrls: [],
     randomRecipes: [],
+    foundRecipes: [],
     randomCocktails: [],
     foundCocktails: []
   }

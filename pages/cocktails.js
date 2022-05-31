@@ -7,6 +7,7 @@ import { useContext, useState, Fragment } from 'react'
 import { StoreContext } from '../context/store-context'
 import { getRandomCocktails } from '../utils/cocktaildb'
 import { ACTION_TYPES } from '../context/store-context'
+import Navigation from '../components/navigation.component'
 
 const Cocktail = () => {  
     const {dispatch, state} = useContext(StoreContext);
@@ -36,6 +37,7 @@ const Cocktail = () => {
           <meta name="description" content="Let us pick a cocktail for you!" />
         </Head>
   
+        <Navigation site="cocktails"/>
         <div className={styles.main}>
             <CocktailBanner buttonAction={fetchRandomCocktails} buttonLoading={gettingCocktails}/>
             

@@ -4,7 +4,7 @@ import PreviewCard from "./previewCard.component"
 import { getCocktailsByIngredient } from "../utils/cocktaildb"
 import { StoreContext, ACTION_TYPES } from "../context/store-context"
 
-const possibleIngredient = ["Vodka", "Gin", "Dark rum", "Light rum", "Whisky", "Tequila", "Cider", "Beer", "Absinthe", "Cachaca", "Scotch", "Red Wine", "Bourbon", "Amaretto", "Cognac", "Campari", "Sweet Vermouth", "Dry Vermouth", "Triple sec", "Brandy", "Kahlua"]
+const possibleIngredient = ["Vodka", "Gin", "Dark rum", "Light rum", "Tequila", "Cider", "Beer", "Absinthe", "Cachaca", "Scotch", "Red Wine", "Bourbon", "Amaretto", "Cognac", "Campari", "Sweet Vermouth", "Dry Vermouth", "Triple sec", "Brandy", "Kahlua"]
 
 const CocktailForm = () => {
 

@@ -1,56 +1,91 @@
 .main {
-  min-height: 100vh;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
 }
 
-.cardsContainer {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-column-gap: 30px;
-  grid-row-gap: 20px;
-}
-
-.heading2 {
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-top: 30px;
-  text-shadow: 1px 1px black;
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-}
-
-@media(min-width: 480px) {
-  .main {
-    padding: 20px 40px;
-  }
-}
-
-@media (min-width: 768px) {
-  .main {
+.innerContainer {
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
-  }
-
-  .heading2 {
-    font-size: 35px;
-    padding-left: 0px;
-  }
-
-  .cardsContainer {
-    grid-template-columns: 1fr 1fr;
-  }
-
+    background-color: white;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 2px 1px black;
 }
 
-@media (min-width: 1024px) {
-  .cardsContainer {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+.restaurantButton,
+.recipeButton,
+.cocktailButton {
+    cursor: pointer;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 250px;
+    color: white;
+    transition: 0.3s;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
 
-  .main {
-    padding: 20px 80px;
-  }
+.restaurantButton {
+    background-color: var(--secondary);
+}
+
+.restaurantButton:hover {
+    background-color: var(--secondary-hover);
+}
+
+.recipeButton {
+    background-color: var(--secondary-recipe);
+}
+
+.recipeButton:hover {
+    background-color: var(--secondary-recipe-hover);
+}
+
+.cocktailButton {
+    background-color: var(--secondary-cocktail);
+    margin-bottom: 0px;
+}
+
+.cocktailButton:hover {
+    background-color: var(--secondary-cocktail-hover);
+}
+
+.heading {
+    font-size: 40px;
+    color: white;
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    width: 200px;
+}
+
+.subHeading {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.titleSecondPart {
+    color: var(--secondary)
+}
+
+@media (min-width: 480px) {
+    .heading {
+        font-size: 50px;
+        width: 250px;
+    }
 }

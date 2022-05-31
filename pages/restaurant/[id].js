@@ -174,7 +174,7 @@ const Restaurant = (props) => {
             <div className={styles.topContainer}>
                 <div className={styles.leftColumn}>
                     <div className={styles.homeLinkContainer}>
-                        <Link href="/"><a className={styles.homeLink}>&#x2190; Back Home</a></Link>
+                        <Link href="/restaurants"><a className={styles.homeLink}>&#x2190; Back Home</a></Link>
                     </div>
                     <h1 className={styles.name}>{name}</h1>
                     <Image className={styles.mainImage} src = {mainPhotoUrl} alt={name} layout="responsive" width="100" height="60"/>

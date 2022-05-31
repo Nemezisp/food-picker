@@ -1,14 +1,15 @@
-import styles from '../styles/Recipe.module.css'
+import styles from '../styles/recipes.module.css'
 import Head from 'next/head'
 import FoodBanner from '../components/foodBanner.component'
 import PreviewCard from '../components/previewCard.component'
 import RecipePropertiesForm from '../components/recipePropertiesForm.component'
+import Navigation from '../components/navigation.component'
 import { useContext, useState, Fragment } from 'react'
 import { StoreContext } from '../context/store-context'
 import { getRandomRecipes } from '../utils/edamam'
 import { ACTION_TYPES } from '../context/store-context'
 
-const Recipe = () => {  
+const Recipes = () => {  
     const {dispatch, state} = useContext(StoreContext);
     const {randomRecipes} = state;
 
@@ -37,6 +38,7 @@ const Recipe = () => {
           <script src="https://developer.edamam.com/attribution/badge.js"></script>
         </Head>
   
+        <Navigation site="recipes"/>
         <div className={styles.main}>
             <FoodBanner buttonAction={fetchRandomRecipes} buttonLoading={gettingRecipes}/>
 
@@ -57,4 +59,4 @@ const Recipe = () => {
     )
 }
 
-export default Recipe;
+export default Recipes;

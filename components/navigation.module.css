@@ -1,0 +1,39 @@
+.navContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 135px 135px;
+    grid-gap: 10px;
+    justify-content: end;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.restaurantsLink,
+.recipesLink,
+.cocktailsLink {
+    cursor: pointer;
+    background-color: white;
+    padding: 5px;
+    text-align: center;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.restaurantsLink:hover,
+.recipesLink:hover,
+.cocktailsLink:hover {
+    background-color: rgb(208, 207, 207);
+}
+
+.restaurantsLink {
+    color: var(--secondary);
+}
+
+.recipesLink {
+    color: var(--secondary-recipe);
+}
+
+.cocktailsLink {
+    color: var(--secondary-cocktail);
+}
