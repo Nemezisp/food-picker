@@ -2,6 +2,7 @@ import styles from '../styles/recipes.module.css'
 import Head from 'next/head'
 import FoodBanner from '../components/foodBanner.component'
 import PreviewCard from '../components/previewCard.component'
+import Script from 'next/script'
 import RecipePropertiesForm from '../components/recipePropertiesForm.component'
 import Navigation from '../components/navigation.component'
 import { useContext, useState, Fragment } from 'react'
@@ -35,7 +36,7 @@ const Recipes = () => {
         <Head>
           <title>Recipe Picker</title>
           <meta name="description" content="Let us pick a recipe for you!" />
-          <script src="https://developer.edamam.com/attribution/badge.js"></script>
+          <Script src="https://developer.edamam.com/attribution/badge.js"></Script>
         </Head>
   
         <Navigation site="recipes"/>

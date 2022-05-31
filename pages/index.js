@@ -21,16 +21,16 @@ export default function Home() {
           <Image src="/static/chef.png" alt='smiling chef' height={150} width={150}/>
         </div>
         <div className={styles.innerContainer}>
-          <span className={styles.subHeading}>Don't know where to eat?</span>
-          <Link href="/restaurants">
+          <span className={styles.subHeading}>Don&apos;t know where to eat?</span>
+          <Link passHref="false" href="/restaurants">
             <button className={styles.restaurantButton}>Restaurant Picker</button>
           </Link>
-          <span className={styles.subHeading}>Don't know what to cook?</span>
-          <Link href="/recipes">
+          <span className={styles.subHeading}>Don&apos;t know what to cook?</span>
+          <Link passHref="false" href="/recipes">
             <button className={styles.recipeButton}>Recipe Picker</button>
           </Link>
-          <span className={styles.subHeading}>Don't know what to drink?</span>
-          <Link href="/cocktails">
+          <span className={styles.subHeading}>Don&apos;t know what to drink?</span>
+          <Link passHref="false" href="/cocktails">
             <button className={styles.cocktailButton}>Cocktail Picker</button>
           </Link>
         </div>
