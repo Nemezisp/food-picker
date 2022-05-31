@@ -1,8 +1,9 @@
-import styles from "./cocktailForm.module.css"
+import styles from "./forms.module.css"
 import { useState, Fragment, useContext } from "react"
 import PreviewCard from "./previewCard.component"
 import { getCocktailsByIngredient } from "../utils/cocktaildb"
 import { StoreContext, ACTION_TYPES } from "../context/store-context"
+import cls from "classnames";
 
 const possibleIngredient = ["Vodka", "Gin", "Dark rum", "Light rum", "Tequila", "Cider", "Beer", "Absinthe", "Cachaca", "Scotch", "Red Wine", "Bourbon", "Amaretto", "Cognac", "Campari", "Sweet Vermouth", "Dry Vermouth", "Triple sec", "Brandy", "Kahlua"]
 
@@ -42,14 +43,14 @@ const CocktailForm = () => {
                 <div className={styles.checkpointBoxContainer}>
                     {possibleIngredient.map((ingredient, index) => {
                         return (
-                            <div key={index} className={styles.radioInput}>
-                                <input className={styles.radio} type="radio" name="ingredient" value={ingredient} onClick={handleMainIngredientChange}/>
+                            <div key={index} className={styles.input}>
+                                <input className={styles.checkbox} type="radio" name="ingredient" value={ingredient} onClick={handleMainIngredientChange}/>
                                 <label className={styles.label}>{ingredient}</label>
                             </div>
                         )
                     })}
                 </div>
-                <button className={styles.searchButton} onClick={handleSubmit}>{searchingForCocktails ? "Searching..." : "Search!"}</button>
+                <button className={cls(styles.searchButton, styles.backgroundCocktails)} onClick={handleSubmit}>{searchingForCocktails ? "Searching..." : "Search!"}</button>
                 {error && <div style={{"fontSize": "20px"}}>Problem interacting with API.</div>}
                 {foundCocktails && foundCocktails.length ?
                 <Fragment>

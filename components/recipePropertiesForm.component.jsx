@@ -1,8 +1,9 @@
-import styles from "./recipePropertiesForm.module.css"
+import styles from "./forms.module.css"
 import { useState, Fragment, useContext } from "react"
 import {getRecipes} from '../utils/edamam'
 import PreviewCard from "./previewCard.component"
 import { ACTION_TYPES, StoreContext } from "../context/store-context"
+import cls from "classnames";
 
 const defaultRecipeProperties = {
     cuisineType: [],
@@ -117,7 +118,7 @@ const RecipePropertiesForm = () => {
                 <div className={styles.checkpointBoxContainer}>
                     {possibleCuisineTypes.map((type, index) => {
                         return (
-                            <div key={index} className={styles.checkboxInput}>
+                            <div key={index} className={styles.input}>
                                 <input className={styles.checkbox} type="checkbox" value={type} onClick={handleCuisineTypeChange}/>
                                 <label className={styles.label}>{type}</label>
                             </div>
@@ -128,7 +129,7 @@ const RecipePropertiesForm = () => {
                 <div className={styles.checkpointBoxContainer}>
                     {possibleDiets.map((diet, index) => {
                         return (
-                            <div key={index} className={styles.checkboxInput}>
+                            <div key={index} className={styles.input}>
                                 <input className={styles.checkbox} type="checkbox" value={diet} onClick={handleDietChange}/>
                                 <label className={styles.label}>{diet}</label>
                             </div>
@@ -139,7 +140,7 @@ const RecipePropertiesForm = () => {
                 <div className={styles.checkpointBoxContainer}>
                     {possibleMealTypes.map((type, index) => {
                         return (
-                            <div key={index} className={styles.checkboxInput}>
+                            <div key={index} className={styles.input}>
                                 <input className={styles.checkbox} type="checkbox" value={type} onClick={handleMealTypeChange}/>
                                 <label className={styles.label}>{type}</label>
                             </div>
@@ -150,7 +151,7 @@ const RecipePropertiesForm = () => {
                 <div className={styles.checkpointBoxContainer}>
                     {possibleDishTypes.map((type, index) => {
                         return (
-                            <div key={index} className={styles.checkboxInput}>
+                            <div key={index} className={styles.input}>
                                 <input className={styles.checkbox} type="checkbox" value={type} onClick={handleDishTypeChange}/>
                                 <label className={styles.label}>{type}</label>
                             </div>
@@ -160,10 +161,10 @@ const RecipePropertiesForm = () => {
                 <div className={styles.inputAndSubmitContainer}>
                     <h3 className={styles.smallHeading}>Main Ingredient:</h3>
                     <input type="text" onChange={handleMainIngredientChange}/>
-                    <button className={styles.searchButton} onClick={handleSubmit}>{searchingForRecipes ? "Searching..." : "Search!"}</button>
+                    <button className={cls(styles.searchButton, styles.backgroundRecipes)} onClick={handleSubmit}>{searchingForRecipes ? "Searching..." : "Search!"}</button>
                 </div>
-                {noRecipesFound && <span style={{"fontSize": "20px"}}>No recipes matching your search criteria found!</span>}
-                {error && <span style={{"fontSize": "20px"}}>Problem interacting with API.</span>}
+                {noRecipesFound && <p style={{"fontSize": "20px"}}>No recipes matching your search criteria found!</p>}
+                {error && <p style={{"fontSize": "20px"}}>Problem interacting with API.</p>}
                 {foundRecipes && foundRecipes.length ?
                 <Fragment>
                     <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>
