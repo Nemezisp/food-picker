@@ -33,11 +33,11 @@ const Recipes = () => {
 
     return (
       <div className={styles.container}>
-        <Script src="https://developer.edamam.com/attribution/badge.js"></Script>
 
         <Head>
           <title>Recipe Picker</title>
           <meta name="description" content="Let us pick a recipe for you!" />
+          <script src="https://developer.edamam.com/attribution/badge.js"></script>
         </Head>
   
         <Navigation site="recipes"/>
