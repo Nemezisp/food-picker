@@ -1,6 +1,6 @@
 import styles from '../styles/Recipes.module.css'
 import Head from 'next/head'
-import FoodBanner from '../components/foodBanner.component'
+import RecipesBanner from '../components/recipesBanner.component'
 import PreviewCard from '../components/previewCard.component'
 import Script from 'next/script'
 import RecipePropertiesForm from '../components/recipePropertiesForm.component'
@@ -42,7 +42,7 @@ const Recipes = () => {
   
         <Navigation site="recipes"/>
         <div className={styles.main}>
-            <FoodBanner buttonAction={fetchRandomRecipes} buttonLoading={gettingRecipes}/>
+            <RecipesBanner buttonAction={fetchRandomRecipes} buttonLoading={gettingRecipes}/>
 
             {(randomRecipes.length > 0) &&
                 <Fragment>

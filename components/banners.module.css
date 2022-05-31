@@ -46,8 +46,40 @@
     color: var(--text-primary);
 }
 
-.title_second_part {
+.color_recipes {
     color: var(--secondary-recipe);
+}
+
+.background_recipes {
+    background-color: var(--secondary-recipe);
+}
+
+.background_recipes:hover {
+    background-color: var(--secondary-recipe-hover)
+}
+
+.color_cocktails {
+    color: var(--secondary-cocktail);
+}
+
+.background_cocktails {
+    background-color: var(--secondary-cocktail);
+}
+
+.background_cocktails:hover {
+    background-color: var(--secondary-cocktail-hover)
+}
+
+.color_restaurants {
+    color: var(--secondary);
+}
+
+.background_restaurants {
+    background-color: var(--secondary);
+}
+
+.background_restaurants:hover {
+    background-color: var(--secondary-restaurants-hover)
 }
 
 .subtitle {
@@ -64,7 +96,6 @@
 
 .button {
     padding: 12px;
-    background-color: var(--secondary-recipe);
     color: white;
     border: none;
     cursor: pointer;
@@ -74,8 +105,10 @@
     width: 130px;
 }
 
-.button:hover {
-    background-color: var(--secondary-recipe-hover);
+.error {
+    color: red;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 @media (min-width: 480px) {

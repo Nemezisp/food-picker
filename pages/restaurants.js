@@ -4,7 +4,7 @@ import PreviewCard from '../components/previewCard.component'
 
 import { fetchFoursquareRestaurants, fetchPlacePhoto } from '../utils/foursquare'
 
-import Banner from '../components/banner.component'
+import RestaurantsBanner from '../components/restaurantsBanner.component'
 import Navigation from '../components/navigation.component'
 
 import { Fragment, useEffect, useState, useContext } from 'react'
@@ -80,7 +80,7 @@ export default function Restaurants(props) {
 
       <Navigation site="restaurants"/>
       <div className={styles.main}>
-        <Banner areNearbyRestaurantsLoading={areNearbyRestaurantsLoading} setShouldNearbyRestaurantsLoad={setShouldNearbyRestaurantsLoad} fetchNearbyRestaurants={fetchNearbyRestaurants}/>
+        <RestaurantsBanner areNearbyRestaurantsLoading={areNearbyRestaurantsLoading} setShouldNearbyRestaurantsLoad={setShouldNearbyRestaurantsLoad} fetchNearbyRestaurants={fetchNearbyRestaurants}/>
         {(nearbyRestaurants.length > 0 && nearbyRestaurantPhotoUrls.length > 0) &&
           <Fragment>
             <h2 className={styles.heading2}>Restaurants near you</h2>

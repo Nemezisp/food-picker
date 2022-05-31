@@ -1,12 +1,14 @@
-import styles from "./banner.module.css"
-import Image from 'next/image'
+import styles from "./banners.module.css";
+import Image from 'next/image';
 import { StoreContext } from "../context/store-context";
 import useLocation from "../hooks/use-location";
 import PickRestaurant from "./pickRestaurant.component";
 import Modal from "./modal.component";
 import { useState, useEffect, useContext } from "react";
+import cls from "classnames";
 
-const Banner = (props) => {
+
+const RestaurantsBanner = (props) => {
     const {handleLocation, errorMessage, isFindingLocation} = useLocation();
 
     const {state} = useContext(StoreContext);
@@ -46,7 +48,7 @@ const Banner = (props) => {
             <div className={styles.left_container}> 
                 <h1 className={styles.title}>
                     <span className={styles.title_first_part}>Restaurant Picker</span>
-                    <span className={styles.title_second_part}> Ultimativo</span>
+                    <span className={styles.color_restaurants}> Ultimativo</span>
                 </h1>
                 <div className={styles.small_image_container}>
                     <Image src="/static/chef.png" alt='smiling chef' height={80} width={80}/>
@@ -55,16 +57,16 @@ const Banner = (props) => {
                 {errorMessage && <p className={styles.error}>Something went wrong!</p>}
                 <div className={styles.buttons}>
                     {isFindingLocation ? 
-                        <button className={styles.button} onClick={() => handleViewNearbyButtonClick()}>Locating...</button>
+                        <button className={cls(styles.button, styles.background_restaurants)} onClick={null}>Locating...</button>
                         : props.areNearbyRestaurantsLoading 
-                        ? <button className={styles.button} onClick={() => handleViewNearbyButtonClick()}>Loading restaurants...</button>
+                        ? <button className={cls(styles.button, styles.background_restaurants)} onClick={null}>Loading restaurants...</button>
                         : 
-                        <button className={styles.button} onClick={() => handleViewNearbyButtonClick()}>View nearby places</button>
+                        <button className={cls(styles.button, styles.background_restaurants)} onClick={() => handleViewNearbyButtonClick()}>View nearby places</button>
                     } 
                     {isFindingLocation ? 
-                        <button className={styles.button} onClick={() => handleLetUsPickButtonClick()}>Locating...</button>
+                        <button className={cls(styles.button, styles.background_restaurants)} onClick={null}>Locating...</button>
                         :
-                        <button className={styles.button} onClick={() => handleLetUsPickButtonClick()}>Or let us pick for you!</button>
+                        <button className={cls(styles.button, styles.background_restaurants)} onClick={() => handleLetUsPickButtonClick()}>Or let us pick for you!</button>
                     }
                 </div>
             </div>
@@ -75,4 +77,4 @@ const Banner = (props) => {
     )
 }
 
-export default Banner;
+export default RestaurantsBanner;
