@@ -5,7 +5,7 @@ import Image from 'next/image'
 import cls from 'classnames'
 import { getCocktailById } from '../../utils/cocktaildb'
 
-import styles from '../../styles/cocktail.module.css'
+import styles from '../../styles/Cocktail.module.css'
 import { Fragment, useEffect, useState } from 'react'
 
 const Cocktail = () => {

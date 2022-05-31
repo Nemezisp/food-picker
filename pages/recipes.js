@@ -1,4 +1,4 @@
-import styles from '../styles/recipes.module.css'
+import styles from '../styles/Recipes.module.css'
 import Head from 'next/head'
 import FoodBanner from '../components/foodBanner.component'
 import PreviewCard from '../components/previewCard.component'

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/restaurants.module.css'
+import styles from '../styles/Restaurants.module.css'
 import PreviewCard from '../components/previewCard.component'
 
 import { fetchFoursquareRestaurants, fetchPlacePhoto } from '../utils/foursquare'

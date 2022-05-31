@@ -1,4 +1,4 @@
-import styles from '../styles/cocktails.module.css'
+import styles from '../styles/Cocktails.module.css'
 import Head from 'next/head'
 import CocktailBanner from '../components/cocktailBanner.component'
 import PreviewCard from '../components/previewCard.component'

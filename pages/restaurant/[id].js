@@ -13,7 +13,7 @@ import { createCookie, getCookie, updateCookie } from '../../utils/cookies'
 
 import cls from 'classnames'
 
-import styles from '../../styles/restaurant.module.css'
+import styles from '../../styles/Restaurant.module.css'
 import { useEffect, useState } from 'react'
 
 export async function getStaticProps({params}) {
