@@ -28,6 +28,8 @@ a {
   --secondary-hover: #E53E3E;
   --secondary-recipe: rgb(0, 100, 0);
   --secondary-recipe-hover: rgb(0, 135, 0);
+  --secondary-cocktail: #fd670a;
+  --secondary-cocktail-hover: #F87423;
 }
 
 .glass,

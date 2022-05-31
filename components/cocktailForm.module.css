@@ -16,12 +16,6 @@
     font-size: 22px;
 }
 
-.inputAndSubmitContainer {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-}
-
 .searchButton {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -32,13 +26,13 @@
     width: 150px;
     border: none;
     padding: 10px;
-    background-color: var(--secondary-recipe);
+    background-color: var(--secondary-cocktail);
     color: white;
     transition: 0.5s;
 }
 
 .searchButton:hover {
-    background-color: var(--secondary-recipe-hover);
+    background-color: var(--secondary-cocktail-hover);
 }
 
 .bigHeadingBlack {
@@ -59,7 +53,7 @@
     height: 100%;
 }
 
-.checkboxInput {
+.radioInput {
     width: 210px;
     margin-bottom: 10px;
     margin-right: 5px;
@@ -67,7 +61,7 @@
     align-items: center;
 }
 
-.checkbox {
+.radio {
     width:20px;
     height:20px;
     margin-right: 5px;

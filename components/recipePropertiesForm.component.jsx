@@ -1,5 +1,5 @@
 import styles from "./recipePropertiesForm.module.css"
-import { useState, useContext, useEffect, Fragment } from "react"
+import { useState, Fragment } from "react"
 import {getRecipes} from '../utils/edamam'
 import PreviewCard from "./previewCard.component"
 
@@ -22,16 +22,22 @@ const RecipePropertiesForm = () => {
     const [recipes, setRecipes] = useState([])
     const [noRecipesFound, setNoRecipesFound] = useState(false)
     const [searchingForRecipes, setSearchingForRecipes] = useState(false)
+    const [error, setError] = useState(false)
 
     const handleSubmit = async () => {
         setSearchingForRecipes(true)
-        let recipes = await getRecipes(chosenRecipeProperties)
-        if (recipes.length === 0) {
-            setNoRecipesFound(true)
-            setRecipes([])
-        } else {
-            setNoRecipesFound(false)
-            setRecipes(recipes)
+        setError(false)
+        try {
+            let recipes = await getRecipes(chosenRecipeProperties, 8)
+            if (recipes.length === 0) {
+                setNoRecipesFound(true)
+                setRecipes([])
+            } else {
+                setNoRecipesFound(false)
+                setRecipes(recipes)
+            }
+        } catch (err) {
+            setError(err)
         }
         setSearchingForRecipes(false)
     }
@@ -145,9 +151,10 @@ const RecipePropertiesForm = () => {
                 <div className={styles.inputAndSubmitContainer}>
                     <h3 className={styles.smallHeading}>Main Ingredient:</h3>
                     <input type="text" onChange={handleMainIngredientChange}/>
-                    <button className={styles.searchRecipesButton} onClick={handleSubmit}>{searchingForRecipes ? "Searching..." : "Search!"}</button>
+                    <button className={styles.searchButton} onClick={handleSubmit}>{searchingForRecipes ? "Searching..." : "Search!"}</button>
                 </div>
                 {noRecipesFound && <span style={{"fontSize": "20px"}}>No recipes matching your search criteria found!</span>}
+                {error && <span style={{"fontSize": "20px"}}>Problem interacting with API.</span>}
                 {recipes.length ?
                 <Fragment>
                     <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>

@@ -42,9 +42,7 @@ const getRandomNumbersFromRange = (min, max, amount) => {
 
 export const getRandomRecipes = async (amount) => {
     let url = buildUrl(String.fromCharCode(97+Math.floor(Math.random() * 26)));
-    console.log(url)
     let data = await fetchRecipes(url);
-    console.log(data)
     let randomNumbers = getRandomNumbersFromRange(0, data.hits.length, amount)
     let recipes = [];
     for (let number of randomNumbers) {
@@ -53,12 +51,12 @@ export const getRandomRecipes = async (amount) => {
     return recipes;
 }
 
-export const getRecipes = async (searchProperties) => {
+export const getRecipes = async (searchProperties, amount) => {
     let url = buildLongUrl(searchProperties);
     let data = await fetchRecipes(url);
     let recipesFoundNumber = data.hits.length
     let recipes = []
-    for (let i = 0; i < Math.min(recipesFoundNumber, 6); i ++) {
+    for (let i = 0; i < Math.min(recipesFoundNumber, amount); i ++) {
         recipes.push(data.hits[i].recipe)
     }
     return recipes

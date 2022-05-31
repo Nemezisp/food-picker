@@ -5,7 +5,7 @@ import PreviewCard from '../components/previewCard.component'
 import RecipePropertiesForm from '../components/recipePropertiesForm.component'
 import { useContext, useState, Fragment } from 'react'
 import { StoreContext } from '../context/store-context'
-import { getRandomRecipes, getRecipe } from '../utils/edamam'
+import { getRandomRecipes } from '../utils/edamam'
 import { ACTION_TYPES } from '../context/store-context'
 
 const Recipe = () => {  
@@ -39,9 +39,7 @@ const Recipe = () => {
   
         <div className={styles.main}>
             <FoodBanner buttonAction={fetchRandomRecipes} buttonLoading={gettingRecipes}/>
-            <div className={styles.edamamContainer}>
-                <div id="edamam-badge" data-color="white"></div>
-            </div>
+
             {(randomRecipes.length > 0) &&
                 <Fragment>
                     <h2 className={styles.heading2}>Random recipes:</h2>

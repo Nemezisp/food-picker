@@ -6,7 +6,9 @@ export const ACTION_TYPES = {
   SET_LAT_LONG: 'SET_LAT_LONG',
   SET_NEARBY_RESTAURANTS: 'SET_NEARBY_RESTAURANTS',
   SET_NEARBY_RESTAURANT_PHOTO_URLS: 'SET_NEARBY_RESTAURANT_PHOTO_URLS',
-  SET_RANDOM_RECIPES: 'SET_RANDOM_RECIPES'
+  SET_RANDOM_RECIPES: 'SET_RANDOM_RECIPES',
+  SET_RANDOM_COCKTAILS: 'SET_RANDOM_COCKTAILS',
+  SET_FOUND_COCKTAILS: 'SET_FOUND_COCKTAILS',
 }
 
 const storeReducer = (state, action) => {
@@ -23,6 +25,12 @@ const storeReducer = (state, action) => {
     case ACTION_TYPES.SET_RANDOM_RECIPES: {
       return {...state, randomRecipes: action.payload}
     }
+    case ACTION_TYPES.SET_RANDOM_COCKTAILS: {
+      return {...state, randomCocktails: action.payload}
+    }
+    case ACTION_TYPES.SET_FOUND_COCKTAILS: {
+      return {...state, foundCocktails: action.payload}
+    }
     default: {
       return state
     }
@@ -34,7 +42,9 @@ const StoreProvider = ({children}) => {
     latLong: "",
     nearbyRestaurants: [],
     nearbyRestaurantPhotoUrls: [],
-    randomRecipes: []
+    randomRecipes: [],
+    randomCocktails: [],
+    foundCocktails: []
   }
 
   const [state, dispatch] = useReducer(storeReducer, initialState)

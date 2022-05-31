@@ -10,7 +10,7 @@ const FoodBanner = (props) => {
                     <span className={styles.title_second_part}> Ultimativo</span>
                 </h1>
                 <div className={styles.small_image_container}>
-                    <Image src="/static/cooking.png" alt='smiling chef' height={80} width={80}/>
+                    <Image src="/static/cooking.png" alt='cooking pot' height={80} width={80}/>
                 </div>
                 <p className={styles.subtitle}>Don&apos;t know what to cook?</p>
                 <div className={styles.buttons}>
@@ -23,7 +23,7 @@ const FoodBanner = (props) => {
                 </div>
             </div>
             <div className={styles.big_image_container}>
-                <Image src="/static/cooking.png" alt='smiling chef' height={220} width={220}/>
+                <Image src="/static/cooking.png" alt='cooking pot' height={220} width={220}/>
             </div>
         </div>
     )
