@@ -80,7 +80,7 @@ const RecipePropertiesForm = () => {
     }
 
     const handleDietChange = (event) => {
-        if (event.target.value === "No Diet") return
+        if (event.target.value === "No diet") return
 
         let diet = event.target.value.toLowerCase()
         let tempDiet = [...chosenRecipeProperties.diet]
