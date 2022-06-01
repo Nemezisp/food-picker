@@ -10,8 +10,8 @@ export default function Home() {
         <title>Food Picker</title>
         <meta name="description" content="Let us pick a restaurant/recipe/cocktail for you!" />
         <link rel="icon" href="/favicon.ico" />
+        <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
       </Head>
-
       <div className={styles.main}>
         <div className={styles.header}>
           <div className={styles.heading}>
@@ -23,15 +23,42 @@ export default function Home() {
         <div className={styles.innerContainer}>
           <span className={styles.subHeading}>Don&apos;t know where to eat?</span>
           <Link passHref={false} href="/restaurants">
-            <button className={styles.restaurantButton}>Restaurant Picker</button>
+            <div className={styles.buttonWithIcon}>
+              <lord-icon
+                  src="https://cdn.lordicon.com/jpdtnwas.json"
+                  trigger="hover"
+                  colors="primary:#000000,secondary:#fd670a"
+                  style={{width:"70px", height:"70px"}}>    
+              </lord-icon>
+              <button className={styles.restaurantButton}>Restaurant Picker</button>
+            </div>
           </Link>
           <span className={styles.subHeading}>Don&apos;t know what to cook?</span>
           <Link passHref={false} href="/recipes">
-            <button className={styles.recipeButton}>Recipe Picker</button>
+            <div className={styles.buttonWithIcon}>
+              <lord-icon
+                  src="https://cdn.lordicon.com/itmmouju.json"
+                  trigger="hover"
+                  colors="primary:#000000,secondary:#fd670a"
+                  style={{width:"70px", height:"70px"}}>
+              </lord-icon>
+              <button className={styles.recipeButton}>
+                Recipe Picker
+              </button>
+            </div>
           </Link>
           <span className={styles.subHeading}>Don&apos;t know what to drink?</span>
           <Link passHref={false} href="/cocktails">
-            <button className={styles.cocktailButton}>Cocktail Picker</button>
+            <div className={styles.buttonWithIcon}>
+              <lord-icon
+                  src="https://cdn.lordicon.com/kdruzgxz.json"
+                  trigger="hover"
+                  colors="primary:#000000,secondary:#fd670a"
+                  stroke="40"
+                  style={{width:"70px", height:"70px"}}>
+              </lord-icon>
+              <button className={styles.cocktailButton}>Cocktail Picker</button>
+            </div>
           </Link>
         </div>
       </div>

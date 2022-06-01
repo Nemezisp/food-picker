@@ -3,7 +3,6 @@ const buildUrl = (searchTerm) => {
 }
 
 export const buildLongUrl = (searchProperties) => {
-    console.log(searchProperties)
     let url = `https://api.edamam.com/api/recipes/v2?type=public&app_key=${process.env.NEXT_PUBLIC_EDAMAM_API_KEY}&app_id=${process.env.NEXT_PUBLIC_EDAMAM_APP_ID}&random=true`
     url = url.concat(`&q=${searchProperties.mainIngredient}`)
     for (let diet of searchProperties.diet) {
@@ -42,13 +41,18 @@ const getRandomNumbersFromRange = (min, max, amount) => {
 
 export const getRandomRecipes = async (amount) => {
     let url = buildUrl(String.fromCharCode(97+Math.floor(Math.random() * 26)));
-    let data = await fetchRecipes(url);
-    let randomNumbers = getRandomNumbersFromRange(0, data.hits.length, amount)
-    let recipes = [];
-    for (let number of randomNumbers) {
-        recipes.push(data.hits[number].recipe)
+    try {
+        let data = await fetchRecipes(url);
+        let randomNumbers = getRandomNumbersFromRange(0, data.hits.length-1, amount)
+        let recipes = [];
+        for (let number of randomNumbers) {
+            recipes.push(data.hits[number].recipe)
+        }
+        return recipes;
+    } catch (err) {
+        return err;
     }
-    return recipes;
+
 }
 
 export const getRecipes = async (searchProperties, amount) => {

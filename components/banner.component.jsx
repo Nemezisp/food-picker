@@ -20,13 +20,19 @@ const Banner = (props) => {
                 </div>
                 <p className={styles.subtitle}>{props.subHeading}</p>
                 <div className={styles.buttons}>
-                    <button className={cls(styles.button, styles[backgroundClass])} onClick={() => props.buttonAction()}>
-                        {props.buttonLoading ? "Loading..." : `Get random ${typePlural}`}
-                    </button>
+                    {props.buttonLoading ? 
+                        <button className={cls(styles.button, styles[backgroundClass])} onClick={null}>
+                            Loading...
+                        </button> 
+                        :
+                        <button className={cls(styles.button, styles[backgroundClass])} onClick={() => props.buttonAction()}>
+                            {`Get random ${typePlural}`}
+                        </button>
+                    }
                     {typeSingular === "recipe" &&
-                        <div className={styles.edamamContainer}>
-                            <div id="edamam-badge" data-color="white"></div>
-                        </div>
+                        <a href="https://www.edamam.com/" className={styles.edamamContainer}>
+                            <Image src="/static/edamam-white.png" alt="edamam badge" layout="responsive" height={26} width={130}/>
+                        </a>
                     }
                 </div>
             </div>

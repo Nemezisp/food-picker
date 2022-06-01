@@ -1,5 +1,5 @@
 import styles from "./forms.module.css"
-import { useState, Fragment, useContext } from "react"
+import { useState, Fragment, useContext, useEffect } from "react"
 import PreviewCard from "./previewCard.component"
 import { getCocktailsByIngredient } from "../utils/cocktaildb"
 import { StoreContext, ACTION_TYPES } from "../context/store-context"
@@ -16,6 +16,12 @@ const CocktailForm = () => {
 
     const [searchingForCocktails, setSearchingForCocktails] = useState(false)
     const [error, setError] = useState(false)
+
+    useEffect(() => {
+        if (foundCocktails && foundCocktails.length) {
+            document.getElementById("cocktailCardsContainer").scrollIntoView({behavior: "smooth"});
+        }
+    }, [foundCocktails])
 
     const handleSubmit = async () => {
         setSearchingForCocktails(true)
@@ -54,8 +60,8 @@ const CocktailForm = () => {
                 {error && <div style={{"fontSize": "20px"}}>Problem interacting with API.</div>}
                 {foundCocktails && foundCocktails.length ?
                 <Fragment>
-                    <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>
-                    <div className={styles.cardsContainer}>
+                    <h2 className={styles.bigHeadingBlack}>Some cocktails you will like:</h2>
+                    <div className={styles.cardsContainer} id="cocktailCardsContainer">
                         {foundCocktails.map((cocktail, index) => {
                             return <PreviewCard key={index} smaller={true} type="cocktail" name={cocktail.drinks[0].strDrink} category={cocktail.drinks[0].strIngredient1} imgUrl={cocktail.drinks[0].strDrinkThumb} href={`/cocktail/${cocktail.drinks[0].idDrink}`}/>
                         })}

@@ -1,5 +1,5 @@
 import styles from "./forms.module.css"
-import { useState, Fragment, useContext } from "react"
+import { useState, Fragment, useContext, useEffect } from "react"
 import {getRecipes} from '../utils/edamam'
 import PreviewCard from "./previewCard.component"
 import { ACTION_TYPES, StoreContext } from "../context/store-context"
@@ -26,6 +26,12 @@ const RecipePropertiesForm = () => {
     const [noRecipesFound, setNoRecipesFound] = useState(false)
     const [searchingForRecipes, setSearchingForRecipes] = useState(false)
     const [error, setError] = useState(false)
+
+    useEffect(() => {
+        if(foundRecipes && foundRecipes.length) {
+            document.getElementById("recipeCardsContainer").scrollIntoView({behavior: "smooth"});
+        }
+    }, [foundRecipes])
 
     const handleSubmit = async () => {
         setSearchingForRecipes(true)
@@ -168,7 +174,7 @@ const RecipePropertiesForm = () => {
                 {foundRecipes && foundRecipes.length ?
                 <Fragment>
                     <h2 className={styles.bigHeadingBlack}>Some recipes you will like:</h2>
-                    <div className={styles.cardsContainer}>
+                    <div className={styles.cardsContainer} id="recipeCardsContainer">
                         {foundRecipes.map((recipe, index) => {
                             return <PreviewCard key={index} smaller={true} type="recipe" name={recipe.label} category={recipe.cuisineType[0]} imgUrl={recipe.image} href={recipe.url}/>
                         })}

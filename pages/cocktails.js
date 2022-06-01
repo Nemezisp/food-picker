@@ -25,7 +25,7 @@ const Cocktail = () => {
             })
 
         } catch (err) {
-            alert(err.message)
+            alert('Problem connecting to API')
         }
         setGettingCocktails(false);
     }

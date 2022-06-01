@@ -23,7 +23,7 @@
   grid-column-gap: 30px;
   grid-row-gap: 20px;
 }
-  
+ 
   @media(min-width: 480px) {
     .main {
       padding: 20px 40px;

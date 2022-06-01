@@ -23,9 +23,8 @@ const Recipes = () => {
                 type: ACTION_TYPES.SET_RANDOM_RECIPES,
                 payload: fetchedRecipes
             })
-
         } catch (err) {
-            alert(err.message)
+            alert('Problem connecting to API')
         }
         setGettingRecipes(false);
     }
@@ -36,7 +35,6 @@ const Recipes = () => {
         <Head>
           <title>Recipe Picker</title>
           <meta name="description" content="Let us pick a recipe for you!" />
-          <script src="https://developer.edamam.com/attribution/badge.js"></script>
         </Head>
   
         <Navigation site="recipes"/>

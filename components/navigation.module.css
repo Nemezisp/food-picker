@@ -1,10 +1,10 @@
 .navContainer {
     width: 100%;
     display: grid;
-    grid-template-columns: 135px 135px;
+    grid-template-columns: auto auto;
     grid-gap: 10px;
     justify-content: end;
-    font-weight: bold;
+    font-weight: 600;
     padding-top: 10px;
     padding-right: 10px;
 }
@@ -14,7 +14,7 @@
 .cocktailsLink {
     cursor: pointer;
     background-color: white;
-    padding: 5px;
+    padding: 5px 10px;
     text-align: center;
     transition: 0.3s;
     border-radius: 5px;

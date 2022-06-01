@@ -12,15 +12,9 @@
 }
 
 .edamamContainer {
-    display: flex;
-    height: 100%;
-    align-items: center;
-}
-
-.edamamContainer > div > a > img {
     width: 130px;
     height: 26px;
-    margin-top: 7px;
+    margin-top: 18px;
 }
 
 .big_image_container {
@@ -40,6 +34,8 @@
     flex-direction: column;
     font-size: 45px;
     line-height: 1.2em;
+    text-shadow: 1px 1px black;
+
 }
 
 .title_first_part {
@@ -104,6 +100,7 @@
     font-size: 16px;
     font-weight: 600;
     width: 130px;
+    transition: 0.3s;
 }
 
 .error {
@@ -132,7 +129,7 @@
         width: 180px;
     }
 
-    .edamamContainer > div > a > img {
+    .edamamContainer {
         width: 180px;
         height: 36px;
     }
@@ -166,6 +163,9 @@
         width: 230px;
     }
 
+    .edamamContainer {
+        margin-top: 12px;
+    }
 }
 
 @media (min-width: 1024px) {
