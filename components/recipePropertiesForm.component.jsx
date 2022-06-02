@@ -14,7 +14,7 @@ const defaultRecipeProperties = {
 }
 
 const possibleCuisineTypes = ["American", "Asian", "British", "Carribean", "Central Europe", "Chinese", "Eastern Europe", "French", "Italian", "Indian", "Japanese", "Mexican", "Mediterranean", "Middle Eastern", "Nordic", "South American", "South East Asian", "Any"]
-const possibleMealTypes = ["Breakfast", "Dinner", "Lunch", "Teatime", "Snack", "Any"]
+const possibleMealTypes = ["Breakfast", "Dinner", "Lunch", "Snack", "Any"]
 const possibleDiets = ["Balanced", "High-fiber", "High-protein", "Low-carb", "Low-fat", "Low-sodium", "No diet"]
 const possibleDishTypes = ["Biscuits and Cookies", "Bread", "Condiments and Sauces", "Desserts", "Drinks", "Main course", "Salad", "Sandwiches", "Side dish", "Soup", "Starter", "Sweets", "Any"]
 
@@ -44,7 +44,6 @@ const RecipePropertiesForm = () => {
                     type: ACTION_TYPES.SET_FOUND_RECIPES,
                     payload: []
                 })
-                setRecipes([])
             } else {
                 setNoRecipesFound(false)
                 dispatch({
@@ -53,6 +52,7 @@ const RecipePropertiesForm = () => {
                 })
             }
         } catch (err) {
+            console.log(err)
             setError(err)
         }
         setSearchingForRecipes(false)
