@@ -52,7 +52,6 @@ const RecipePropertiesForm = () => {
                 })
             }
         } catch (err) {
-            console.log(err)
             setError(err)
         }
         setSearchingForRecipes(false)
