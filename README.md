@@ -1,5 +1,5 @@
 # Food Picker app
-Live version at: [(https://restaurant-picker.vercel.app)](https://restaurant-picker.vercel.app/).
+Live version at: https://restaurant-picker.vercel.app/.
 
 ## Description
 Don't know what to eat or drink?\
